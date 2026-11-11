@@ -4,6 +4,7 @@
   "packageManager": "pnpm@11.24.0",
   "scripts": {
     "dev": "pnpm --filter @scan4all/app tauri dev",
+    "dev:linux": "WEBKIT_DISABLE_DMABUF_RENDERER=1 pnpm dev",
     "dev:web": "pnpm --filter @scan4all/app dev",
     "build": "pnpm --filter @scan4all/app tauri build",
     "android:init": "pnpm --filter @scan4all/app tauri android init",

@@ -26,6 +26,7 @@ Además: Rust (rustup), Node, pnpm. Para Android: JDK 17+, Android SDK/NDK (`AND
 pnpm install
 pnpm api            # API en :8008 (necesita apps/api/.env con VT_API_KEY)
 pnpm dev            # app de escritorio (tauri dev)
+pnpm dev:linux      # igual, con WEBKIT_DISABLE_DMABUF_RENDERER=1 (arregla ventana en blanco con GPU NVIDIA/Intel)
 pnpm dev:web        # solo el frontend en el navegador (vite, :1420)
 pnpm typecheck
 ```
