@@ -1,5 +1,5 @@
 {
-  "name": "scan4all",
+  "name": "@scan4all/mobile",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
