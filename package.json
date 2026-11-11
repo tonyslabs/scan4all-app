@@ -3,10 +3,14 @@
   "private": true,
   "packageManager": "pnpm@11.24.0",
   "scripts": {
-    "mobile": "pnpm --filter ./apps/mobile start",
-    "android": "pnpm --filter ./apps/mobile android",
-    "ios": "pnpm --filter ./apps/mobile ios",
-    "typecheck": "pnpm --filter ./apps/mobile exec tsc --noEmit",
-    "api": "cd apps/api && python3 -m uvicorn main:app --host 127.0.0.1 --port 8000"
+    "dev": "pnpm --filter @scan4all/app tauri dev",
+    "dev:web": "pnpm --filter @scan4all/app dev",
+    "build": "pnpm --filter @scan4all/app tauri build",
+    "android:init": "pnpm --filter @scan4all/app tauri android init",
+    "android:dev": "pnpm --filter @scan4all/app tauri android dev",
+    "android:build": "pnpm --filter @scan4all/app tauri android build",
+    "icons": "pnpm --filter @scan4all/app tauri icon",
+    "typecheck": "pnpm --filter @scan4all/app typecheck",
+    "api": "cd apps/api && python3 -m uvicorn main:app --host 0.0.0.0 --port 8008"
   }
 }

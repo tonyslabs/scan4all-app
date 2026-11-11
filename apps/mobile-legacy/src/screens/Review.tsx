@@ -8,6 +8,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
+import { BASE_URL } from "../config/env";
 import { Ionicons } from "@expo/vector-icons";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "../../App";
@@ -28,8 +29,8 @@ export default function Review({ route }: Props) {
 
     const endpoint =
       kind === "url"
-        ? "http://10.0.2.2:8000/scan/url"
-        : "http://10.0.2.2:8000/scan/upload";
+        ? `${BASE_URL}/scan/url`
+        : `${BASE_URL}/scan/upload`;
 
     let body: any;
     let headers: any = {};
@@ -61,7 +62,7 @@ export default function Review({ route }: Props) {
   };
 
   const pollStatus = async (id: string) => {
-    const url = `http://10.0.2.2:8000/scan/status/${id}`;
+    const url = `${BASE_URL}/scan/status/${id}`;
     let done = false;
     while (!done) {
       try {
