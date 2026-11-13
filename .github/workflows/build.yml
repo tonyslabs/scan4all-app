@@ -41,13 +41,20 @@ jobs:
         with: { node-version: 22, cache: pnpm }
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
-      - uses: android-actions/setup-android@v3
+      # El runner ya trae el SDK de Android: se instalan solo las piezas que pide el proyecto
+      # (setup-android falla con "sdkmanager tools" en las versiones nuevas del SDK).
+      - name: SDK y NDK de Android
+        run: |
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null || true
+          "$SDKM" "platforms;android-37.0" "build-tools;37.0.0" "ndk;27.1.12297006"
+          echo "NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006" >> "$GITHUB_ENV"
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
+          targets: aarch64-linux-android,armv7-linux-androideabi
       - run: pnpm install --frozen-lockfile
-      - run: pnpm android:init
-      - run: pnpm android:build --apk
+      # El proyecto Android (gen/android) ya está en el repo: no se vuelve a generar. Sin llave de firma sale un APK sin firmar.
+      - run: pnpm android:build --apk --target aarch64 --target armv7
       - uses: actions/upload-artifact@v4
         with:
           name: scan4all-android
