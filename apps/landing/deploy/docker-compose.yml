@@ -1,5 +1,5 @@
 # Va en el homelab: ~/docker/apps/scan4all-landing/docker-compose.yml (lo copia deploy.sh).
-# Red `core` = la misma de cloudflared: el túnel de scan4all-app.drskxll.io apunta a http://scan4all-landing:8080
+# Red `core` = la misma de cloudflared: el túnel de appscan4all.drskxll.io apunta a http://scan4all-landing:8080
 # Sin imagen propia: nginx sin privilegios sirve los archivos de ./site (solo lectura).
 services:
   scan4all-landing:

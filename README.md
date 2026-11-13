@@ -13,6 +13,8 @@ Una sola base de código para Linux, Windows y Android.
 
 <br />
 
+**[Descargar](https://appscan4all.drskxll.io)** · [Releases](https://github.com/tonyslabs/scan4all-app/releases)
+
 <img src="docs/screenshots/inicio.png" width="260" alt="Pantalla de inicio" />
 &nbsp;
 <img src="docs/screenshots/dominio.png" width="260" alt="Informe de un dominio" />
