@@ -61,6 +61,7 @@ flowchart LR
 apps/
   app/    Cliente Tauri (src/ = React, src-tauri/ = Rust, gen/android = proyecto Android)
   api/    API FastAPI, Dockerfile, deploy/ y tests/
+  landing/ Página de descarga (HTML, CSS y JS puros, sin build)
 docs/     Capturas del README
 ```
 
@@ -118,6 +119,18 @@ XWIN_ACCEPT_LICENSE=1 pnpm tauri build --runner cargo-xwin --target x86_64-pc-wi
 ```
 
 También hay un workflow de GitHub (`.github/workflows/build.yml`) que se dispara a mano o con un tag `v*`. No firma el APK, por lo que los instalables finales se construyen en local.
+
+## Landing
+
+Una sola pantalla con las descargas: detecta tu sistema, resalta la versión que te toca y lee los archivos del último release de GitHub. Español e inglés.
+
+```bash
+pnpm landing        # http://127.0.0.1:5290 (recarga en vivo)
+pnpm landing:test
+```
+
+Parámetros de prueba: `?demo=1` (release simulado), `?demo=loading|soon|error`, `?os=android|linux|windows|none` y `?lang=es|en`.
+Los nombres de archivo del release deben terminar en `.deb`, `.AppImage`, `setup.exe`, `.apk` y `SHA256SUMS`.
 
 ## API
 

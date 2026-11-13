@@ -1,0 +1,189 @@
+/* scan4all · landing — misma estética que la app («Estriado»):
+   un dato gigante y nítido detrás de una lámina de vidrio con estrías. Naranja solo para lo malo. */
+
+/* ───────── Tokens: oscuro primero ───────── */
+:root{
+  color-scheme:dark;
+  --bg:#08090B; --hair:rgba(255,255,255,.06);
+  --ink:#F3F4F6; --ink2:#B4BAC3; --glyph:#E6E9ED;
+  --alert:#FF6A2B; --on-alert:#170700;
+  --glass:rgba(27,29,34,.80); --glass-solid:#1B1D22; --haze-op:.85;
+  --sheen:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,0) 38%);
+  --edge:rgba(255,255,255,.42); --edge-soft:rgba(255,255,255,.13);
+  --groove:rgba(0,0,0,.45); --groove-hi:rgba(255,255,255,.10);
+  --rib:linear-gradient(90deg,rgba(255,255,255,.26) 0,rgba(255,255,255,.05) 34%,rgba(0,0,0,0) 62%,rgba(0,0,0,.34) 100%);
+  --wave:rgba(255,255,255,.20);
+  --shadow:0 40px 70px -28px rgba(0,0,0,.85),0 2px 0 rgba(0,0,0,.35);
+  --field:rgba(255,255,255,.07);
+}
+@media (prefers-color-scheme:light){
+  :root{
+    color-scheme:light;
+    --bg:#E7EAEE; --hair:rgba(12,20,32,.075);
+    --ink:#0D1015; --ink2:#414954; --glyph:#11151B;
+    --alert:#C23600; --on-alert:#FFFFFF;
+    --glass:rgba(249,250,252,.74); --glass-solid:#F4F6F8; --haze-op:.6;
+    --sheen:linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,255,255,0) 40%);
+    --edge:rgba(255,255,255,1); --edge-soft:rgba(255,255,255,.7);
+    --groove:rgba(15,25,40,.20); --groove-hi:rgba(255,255,255,.9);
+    --rib:linear-gradient(90deg,rgba(255,255,255,.85) 0,rgba(255,255,255,.18) 36%,rgba(255,255,255,0) 62%,rgba(20,30,45,.20) 100%);
+    --wave:rgba(255,255,255,.75);
+    --shadow:0 40px 70px -30px rgba(20,30,50,.45),0 1px 0 rgba(20,30,50,.10);
+    --field:rgba(13,16,21,.06);
+  }
+}
+:root{
+  --ui:system-ui,"Segoe UI",Roboto,"Noto Sans",Cantarell,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","Roboto Mono","DejaVu Sans Mono","Noto Sans Mono",monospace;
+  --pad:40px; --ribs-h:clamp(64px,13vh,124px);
+  --fs:min(26vw,31vh);
+}
+
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%}
+body{
+  font:15px/1.4 var(--ui);color:var(--ink);overflow:hidden;
+  background:repeating-linear-gradient(0deg,var(--hair) 0 1px,transparent 1px 7px),var(--bg);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.sprite{position:absolute;width:0;height:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ico .fill,.ico path.fill{fill:currentColor;stroke:none}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.stage{position:fixed;inset:0;overflow:hidden}
+
+/* ───────── Barra: marca + enlaces (repo y perfil) ───────── */
+.bar{
+  position:absolute;left:var(--pad);right:var(--pad);top:max(14px,env(safe-area-inset-top));z-index:5;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:36px;
+  font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);
+}
+.mark{text-decoration:none;display:inline-flex;align-items:baseline;gap:8px;color:var(--ink2)}
+.ver{opacity:.7}
+.menu{display:flex;align-items:center;gap:2px}
+.menu-item{
+  display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 12px;border-radius:8px;
+  text-decoration:none;color:var(--ink2);
+}
+.menu-item:hover{color:var(--ink);background:var(--field)}
+.lang{display:flex;margin-left:6px;border:1px solid var(--edge-soft);border-radius:8px;overflow:hidden}
+.lang button{min-height:34px;min-width:38px;border:0;background:transparent;cursor:pointer;font:inherit;letter-spacing:inherit;color:var(--ink2)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* ───────── Protagonista 1: el nombre, nítido, detrás del vidrio ───────── */
+.g{
+  position:absolute;left:var(--pad);top:max(58px,8vh);
+  font:800 var(--fs)/.86 var(--ui);letter-spacing:-.045em;white-space:nowrap;color:var(--glyph);
+  user-select:none;pointer-events:none;
+}
+.g span{display:block}
+.g .l2{margin-left:.02em}
+
+/* ───────── Protagonista 2: la lámina estriada ───────── */
+.pane{
+  position:absolute;left:var(--pad);right:var(--pad);bottom:max(30px,env(safe-area-inset-bottom));z-index:2;
+  border-radius:3px 3px 28px 28px;
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border:1px solid var(--edge-soft);border-top-color:var(--edge);
+  box-shadow:var(--shadow),inset 0 1px 0 var(--edge-soft);
+}
+.frost{position:absolute;inset:0;border-radius:inherit;background:var(--sheen),var(--glass)}
+.ribs{
+  position:relative;z-index:1;height:var(--ribs-h);
+  box-shadow:0 1px 0 var(--groove),0 2px 0 var(--groove-hi);
+}
+.ribs::after{content:"";position:absolute;inset:0;background:var(--rib) 0 0/14px 100% repeat-x;pointer-events:none}
+/* amenaza: la forma cambia, no solo el color (igual que en la app) */
+.rib{position:absolute;bottom:0;left:var(--x);width:14px;top:calc(var(--h) * -1)}
+.rib.mal{background:var(--alert)}
+.rib.sus{box-shadow:inset 0 0 0 1.5px var(--alert);background:var(--glass)}
+.rib::after{content:"";position:absolute;inset:0;background:var(--rib)}
+.wave{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.wave::before{
+  content:"";position:absolute;top:0;bottom:0;left:0;width:22%;
+  background:linear-gradient(90deg,transparent,var(--wave),transparent);
+  transform:translateX(-110%);animation:wave 7s cubic-bezier(.45,0,.2,1) infinite;
+}
+@keyframes wave{0%{transform:translateX(-110%)}60%,100%{transform:translateX(560%)}}
+
+/* ───────── Zona lisa: mensaje + descargas ───────── */
+.flat{
+  position:relative;z-index:1;padding:26px 32px 24px;
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);grid-template-rows:auto 1fr;
+  grid-template-areas:"msg dl" "promo dl";gap:18px 44px;align-items:start;
+}
+.msg{grid-area:msg}.promo{grid-area:promo;align-self:end}.dl{grid-area:dl}
+.readout{display:flex;align-items:center;gap:10px;font:500 12px/1.4 var(--mono);color:var(--ink2);letter-spacing:.02em}
+.readout .dot{width:6px;height:6px;border-radius:1px;background:var(--ink);flex:none}
+h1{margin-top:10px;font:650 clamp(26px,3.3vw,44px)/1.08 var(--ui);letter-spacing:-.03em;text-wrap:balance}
+.sub{margin-top:12px;max-width:44ch;color:var(--ink2);font-size:15px}
+.promo{display:flex;flex-wrap:wrap;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border-radius:10px;cursor:pointer;text-decoration:none;
+  border:1px solid var(--edge-soft);background:var(--field);color:var(--ink);font:600 14px/1 var(--ui);
+}
+.btn:hover{border-color:var(--ink2)}
+.btn.ghost{background:transparent}
+
+/* Descargas */
+.os-list{list-style:none;padding:0;display:grid;gap:10px}
+.os{display:grid;gap:6px}
+.os-main{
+  display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"ico name go" "ico meta go";align-items:center;column-gap:14px;row-gap:2px;
+  min-height:60px;padding:10px 16px;border-radius:12px;text-decoration:none;
+  border:1px solid var(--edge-soft);background:var(--field);
+  transition:border-color .15s,transform .15s;
+}
+.os-main:hover{border-color:var(--ink2);transform:translateY(-1px)}
+.os-ico{grid-area:ico;width:26px;height:26px}
+.os-name{grid-area:name;font:700 17px/1.1 var(--ui);letter-spacing:-.01em}
+.os-meta{grid-area:meta;font:500 12px/1.2 var(--mono);color:var(--ink2);display:flex;gap:10px}
+.os-go{grid-area:go;width:20px;height:20px}
+.os[data-current="true"] .os-main{background:var(--ink);color:var(--bg);border-color:transparent}
+.os[data-current="true"] .os-meta{color:inherit;opacity:.7}
+.os-alt{justify-self:start;margin-left:16px;font:500 12px/1.2 var(--mono);color:var(--ink2);text-decoration:none;border-bottom:1px dashed var(--edge-soft)}
+.os-alt:hover{color:var(--ink)}
+.size{font-variant-numeric:tabular-nums}
+.os-alt .size{margin-left:8px}
+.size:empty{display:none}
+.status{margin-top:10px;min-height:1.4em;font:500 12px/1.4 var(--mono);color:var(--ink2)}
+.status:empty{display:none}
+.note{margin-top:10px;font:500 12px/1.5 var(--mono);color:var(--ink2);max-width:52ch}
+.sums{white-space:nowrap;text-decoration:underline;text-underline-offset:3px;margin-left:4px}
+[data-downloads][data-state="loading"] .size{display:inline-block;min-width:3.5em;height:.9em;border-radius:4px;background:var(--edge-soft);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4}}
+
+/* ───────── Pantallas medianas y bajas ───────── */
+@media (max-height:760px) and (min-width:761px){
+  :root{--fs:min(22vw,23vh)}
+  .flat{padding:18px 28px 16px;gap:16px 36px}
+  .sub{margin-top:8px}
+  .os-main{min-height:52px;padding:8px 14px}
+}
+
+/* ───────── Móvil: se desplaza; la lámina queda como hoja inferior ───────── */
+@media (max-width:760px){
+  :root{--pad:16px;--fs:min(32vw,150px);--ribs-h:64px}
+  body{overflow:auto}
+  .stage{position:relative;inset:auto;min-height:100dvh;display:flex;flex-direction:column;overflow:visible}
+  .bar{position:relative;left:auto;right:auto;margin:12px var(--pad) 0;top:auto}
+  .mark{display:none}
+  .menu{margin:0 auto}
+  .menu-item{padding:0 9px}
+  .g{position:relative;left:auto;top:auto;margin:30px var(--pad) 0;font-size:var(--fs)}
+  .pane{position:relative;left:auto;right:auto;bottom:auto;margin-top:-.52em;border-radius:3px 3px 0 0;border-left:0;border-right:0;border-bottom:0;flex:1}
+  .flat{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"msg" "dl" "promo";padding:18px 16px max(22px,env(safe-area-inset-bottom));gap:20px}
+  .promo{align-self:start}
+  .promo .btn{flex:1 1 150px;justify-content:center}
+}
+@media (max-width:360px){.menu-item{padding:0 6px}.lang button{min-width:32px}}
+
+@media (prefers-reduced-motion:reduce){
+  .wave::before{animation:none;transform:translateX(180%)}
+  .os-main{transition:none}
+  [data-downloads][data-state="loading"] .size{animation:none}
+}

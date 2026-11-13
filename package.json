@@ -11,6 +11,8 @@
     "android:build": "pnpm --filter @scan4all/app tauri android build",
     "icons": "pnpm --filter @scan4all/app tauri icon",
     "typecheck": "pnpm --filter @scan4all/app typecheck",
-    "api": "cd apps/api && python3 -m uvicorn main:app --host 0.0.0.0 --port 8008"
+    "api": "cd apps/api && python3 -m uvicorn main:app --host 0.0.0.0 --port 8008",
+    "landing": "node apps/landing/dev-server.mjs 5290",
+    "landing:test": "node --test apps/landing/test/"
   }
 }
