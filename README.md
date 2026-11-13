@@ -9,6 +9,7 @@ Una sola base de código para Linux, Windows y Android.
 ![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?style=flat-square&logo=tauri&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=111827)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Licencia](https://img.shields.io/badge/licencia-MIT-22C55E?style=flat-square)
 ![Plataformas](https://img.shields.io/badge/Linux%20%C2%B7%20Windows%20%C2%B7%20Android-1F2937?style=flat-square)
 
 <br />
@@ -152,3 +153,7 @@ uvicorn main:app --host 0.0.0.0 --port 8008
 - El token del cliente (`API_TOKEN`) viaja dentro de los instalables, así que se puede extraer. Por eso la API limita por IP, valida todo y no expone más rutas de las necesarias.
 - Comentarios y votos se publican con la cuenta de la clave del servidor. Con `ALLOW_WRITES=0` en la API quedan desactivados.
 - Rotar el token implica recompilar los instalables.
+
+## Licencia
+
+[MIT](LICENSE) © 2026 tonyslabs
