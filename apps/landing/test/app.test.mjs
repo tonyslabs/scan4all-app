@@ -208,7 +208,7 @@ for (const state of ['loading','soon','error']) test(`demo ${state}: sin API, si
   assert.ok(app.slots.every(node=>node.dataset.state===state && node.href===latest));
   assert.equal(app.document.querySelectorAll('[data-current]').length,0);
   app.document.querySelector('[data-lang="en"]').click();
-  assert.equal(app.document.querySelector('[data-dl-status]').textContent,lib.t('en',`dl.${state}`));
+  assert.equal(app.document.querySelector('[data-dl-status]').textContent,state==='soon' ? '' : lib.t('en',`dl.${state}`));
 });
 test('API parcial: carga, fallback, GET, caché reutilizable y versión literal', async () => {
   const app=boot({fetch:async()=>response([deb])});

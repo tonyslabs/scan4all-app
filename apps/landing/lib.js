@@ -68,12 +68,10 @@ es: Object.freeze({
   "dl.deb": ".deb",
   "dl.windows": "Instalador",
   "dl.android": "APK",
-  "dl.note": "Windows va a quejarse: el instalador aún no está firmado. En Android hay que permitir instalar el APK.",
   "meta.title": "scan4all — Qué hay dentro, antes de abrirlo",
   "meta.desc": "Escáner de archivos, URLs, dominios e IPs con más de 90 motores. Código abierto para Linux, Windows y Android.",
   "nav.label": "Enlaces",
   "lang.label": "Idioma",
-  "dl.soon": "Pronto: el primer release aún no está publicado.",
   "dl.loading": "Buscando la última versión…",
   "dl.error": "No pude leer el release. Usa el enlace a GitHub."
 }),
@@ -92,8 +90,6 @@ en: Object.freeze({
   "dl.deb": ".deb",
   "dl.windows": "Installer",
   "dl.android": "APK",
-  "dl.note": "Windows will complain: the installer isn't signed yet. On Android you'll need to allow the APK install.",
-  "dl.soon": "Soon: the first release isn't published yet.",
   "dl.loading": "Looking for the latest version…",
   "dl.error": "Couldn't read the release. Use the GitHub link."
 })

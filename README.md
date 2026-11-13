@@ -130,7 +130,7 @@ pnpm landing:test
 ```
 
 Parámetros de prueba: `?demo=1` (release simulado), `?demo=loading|soon|error`, `?os=android|linux|windows|none` y `?lang=es|en`.
-Los nombres de archivo del release deben terminar en `.deb`, `.AppImage`, `setup.exe`, `.apk` y `SHA256SUMS`.
+Los nombres de archivo del release deben terminar en `.deb`, `.AppImage`, `setup.exe` y `.apk`.
 
 ## API
 

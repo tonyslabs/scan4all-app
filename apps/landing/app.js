@@ -26,7 +26,8 @@ function renderDownloads() {
     node.textContent = release.version;
   });
   document.querySelectorAll('[data-dl-status]').forEach(node => {
-    node.textContent = state === 'ready' ? '' : t(lang, `dl.${state}`);
+    // En 'soon' los botones ya apuntan a la página de releases: no hace falta explicarlo.
+    node.textContent = state === 'ready' || state === 'soon' ? '' : t(lang, `dl.${state}`);
   });
 }
 
