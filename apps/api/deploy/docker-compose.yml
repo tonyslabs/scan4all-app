@@ -1,0 +1,19 @@
+# Va en el homelab: ~/docker/apps/scan4all/docker-compose.yml (junto a un .env 600 con VT_API_KEY y API_TOKEN)
+services:
+  scan4all-api:
+    build: .
+    image: scan4all-api:latest
+    container_name: scan4all-api
+    restart: unless-stopped
+    env_file: .env                 # VT_API_KEY, API_TOKEN (solo viven en el homelab)
+    environment:
+      TRUST_PROXY: "1"             # IP real del visitante vía Cloudflare (CF-Connecting-IP)
+      MAX_UPLOAD_MB: "100"         # tope de Cloudflare (plan Free) para el cuerpo de una petición
+      ALLOW_WRITES: "1"            # 0 = desactiva comentarios y votos (se publican con la cuenta de la clave)
+    ports:
+      - "100.76.255.29:8101:8008"  # acceso por tailnet para probar (hl:8101)
+    networks: [core]               # misma red que cloudflared -> el túnel apunta a http://scan4all-api:8008
+    mem_limit: 512m
+
+networks:
+  core: { external: true }
